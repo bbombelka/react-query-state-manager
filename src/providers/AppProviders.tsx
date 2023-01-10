@@ -10,6 +10,7 @@ export const AppProviders = ({ children }: AppProvidersProps) => (
   <LocaleContextController>
     <ApiClientContextController>
       <AuthContextController>
+        {/* ANY OTHER CLIENT SIDE CONTEXTS LIKE THEME, PRIVILEGE */}
         <Router>{children}</Router>
       </AuthContextController>
     </ApiClientContextController>

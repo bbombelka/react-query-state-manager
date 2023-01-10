@@ -52,7 +52,7 @@ export const mockServer = () => {
           }),
         );
       });
-      this.get('/users', (schema: Schema<AppRegistry>, request) => {
+      this.get('/nope', (schema: Schema<AppRegistry>, request) => {
         const qp = request.queryParams;
         const page = qp.page ? parseInt(qp.page) : null;
         const count = qp.count ? parseInt(qp.count) : null;

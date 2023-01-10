@@ -9,11 +9,8 @@ import { AppProviders } from 'providers/AppProviders';
 import { AppRoutes } from 'routing/AppRoutes';
 
 import * as serviceWorker from './serviceWorker';
-import { mockServer } from './api/mocks/mock-server';
 
 const openReactQueryDevtools = process.env.NODE_ENV === 'development';
-
-mockServer();
 
 if (process.env.NODE_ENV === 'development') {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
