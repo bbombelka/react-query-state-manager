@@ -16,12 +16,22 @@ export const Layout = () => {
           </li>
           <li className="app__menu-item">
             <Link className="app__menu-link" to={'/' + AppRoute.posts}>
-              Posts
+              Posts paginated
             </Link>
           </li>
           <li className="app__menu-item">
-            <Link className="app__menu-link" to={'/' + AppRoute.users}>
-              Users
+            <Link className="app__menu-link" to={'/' + AppRoute.postsInifinite}>
+              Posts inifinite
+            </Link>
+          </li>
+          <li className="app__menu-item">
+            <Link className="app__menu-link" to={'/' + AppRoute.time}>
+              Time
+            </Link>
+          </li>
+          <li className="app__menu-item">
+            <Link className="app__menu-link" to={'/' + AppRoute.jokes}>
+              Jokes
             </Link>
           </li>
         </ul>

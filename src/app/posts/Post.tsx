@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import axios from 'axios';
 
 import { Post as PostType, POSTS_QUERY_KEY } from 'api/hooks/usePostsQuery';
+import { POSTS_INFINITE_QUERY_KEY } from 'api/hooks/useInfinitePostsQuery';
 
 type PostProps = PostType;
 
@@ -11,7 +12,7 @@ export const Post: FC<PostProps> = ({ id, title, body, vote }) => {
     () => axios.delete(`http://localhost:5001/posts/${id}`).then((res) => res.data),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries([POSTS_QUERY_KEY]);
+        queryClient.invalidateQueries([POSTS_QUERY_KEY, POSTS_INFINITE_QUERY_KEY]);
       },
     },
   );
@@ -26,6 +27,7 @@ export const Post: FC<PostProps> = ({ id, title, body, vote }) => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries([POSTS_QUERY_KEY]);
+        queryClient.invalidateQueries([POSTS_INFINITE_QUERY_KEY]);
       },
     },
   );
