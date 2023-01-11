@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 
 export const JOKES_QUERY_KEY = 'JOKES';
 
-export const useJokesQuery = () => {
+export const useJokesQuery = ({ isEnabled }: { isEnabled: boolean }) => {
   return useQuery(
     [JOKES_QUERY_KEY],
     () =>
@@ -16,10 +16,11 @@ export const useJokesQuery = () => {
         .then((res) => res.data),
     {
       placeholderData: {
-        joke: 'Why is Peter Pan always flying? Because he Neverlands.',
+        joke: 'This is React Query local placeholder data',
       },
       refetchOnWindowFocus: false,
       refetchOnMount: true,
+      enabled: isEnabled,
       // keepPreviousData: true, // this makes sure no api calls are made when changing pages
     },
   );
