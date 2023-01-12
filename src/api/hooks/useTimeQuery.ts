@@ -10,7 +10,7 @@ export const useTimeQuery = () => {
     {
       placeholderData: { datetime: '' }, // how to manage initial state !!!
       refetchInterval: 1000,
-      // keepPreviousData: true, // this makes sure no api calls are made when changing pages
+      refetchOnWindowFocus: true,
     },
   );
 };

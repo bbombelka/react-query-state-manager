@@ -1,36 +1,14 @@
 import { FC } from 'react';
-import { useMutation, useQueryClient } from 'react-query';
-import axios from 'axios';
 
-import { Post as PostType, POSTS_QUERY_KEY } from 'api/hooks/usePostsQuery';
-import { POSTS_INFINITE_QUERY_KEY } from 'api/hooks/useInfinitePostsQuery';
+import { Post as PostType } from 'api/hooks/usePostsQuery';
+import { useDeletePostMutation } from 'api/hooks/useDeletePostMutation';
+import { usePostVoteMutation } from 'api/hooks/usePostVoteMutation';
 
 type PostProps = PostType;
 
 export const Post: FC<PostProps> = ({ id, title, body, vote }) => {
-  const { mutateAsync: executeDeleteMutation } = useMutation(
-    () => axios.delete(`http://localhost:5001/posts/${id}`).then((res) => res.data),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries([POSTS_QUERY_KEY, POSTS_INFINITE_QUERY_KEY]);
-      },
-    },
-  );
-  const queryClient = useQueryClient();
-
-  const { mutateAsync: voteMutation } = useMutation<unknown, unknown, number>(
-    (newVote) => {
-      return axios
-        .patch<{ newVote: number }>(`http://localhost:5001/posts/${id}`, { vote: newVote })
-        .then((res) => res.data);
-    },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries([POSTS_QUERY_KEY]);
-        queryClient.invalidateQueries([POSTS_INFINITE_QUERY_KEY]);
-      },
-    },
-  );
+  const { mutateAsync: executeDeleteMutation } = useDeletePostMutation({ id });
+  const { mutateAsync: voteMutation } = usePostVoteMutation({ id });
 
   return (
     <div style={{ border: '1px solid gray', borderRadius: '4px', margin: '12px 0', padding: '16px' }}>

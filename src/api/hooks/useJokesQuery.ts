@@ -19,9 +19,7 @@ export const useJokesQuery = ({ isEnabled }: { isEnabled: boolean }) => {
         joke: 'This is React Query local placeholder data',
       },
       refetchOnWindowFocus: false,
-      refetchOnMount: true,
       enabled: isEnabled,
-      // keepPreviousData: true, // this makes sure no api calls are made when changing pages
     },
   );
 };

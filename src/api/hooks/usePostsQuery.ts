@@ -18,8 +18,7 @@ export const usePostsQuery = ({ page }: { page: number }) => {
         .then((res) => res.data),
     {
       refetchOnWindowFocus: false,
-      // keepPreviousData: true, // this makes sure no api calls are made when changing pages
-      staleTime: 30 * 1000,
+      staleTime: 60 * 1000,
     },
   );
 };
